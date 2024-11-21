@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include <curl/curl.h>
 //   _ __ ___ ___
 //  | '__/ __/ __|
@@ -21,7 +22,7 @@ int main ( int argc, char* argv[] ) {
     CURLcode res;
     char $PACKAGE[100];
     if (strcmp(argv[1], "-h") == 0) {
-        printf("SYNTAX: rcpm (-i, -u, -h, -v, -r) <PACKAGE>\n -i: Installs a package\n -u: Upgrades a package\n -r: Removes a Package\n -h: Displays this menu\n -v: Displays the version of the program (not the package)\n if you encounter any bugs please report it on Github.\n");
+        printf("SYNTAX: rcpm (-i, -h, -v, -r) <PACKAGE>\n -i: Installs a package\n -r: Removes a Package\n -h: Displays this menu\n -v: Displays the version of the program (not the package)\n if you encounter any bugs please report it on Github.\n");
     } else if (strcmp(argv[1], "-v") == 0) {
         printf("Really Crap Package Manager Ver 0.01\n");
     } else if (strcmp(argv[1], "-i") == 0) {
@@ -36,14 +37,16 @@ int main ( int argc, char* argv[] ) {
 	res = curl_easy_perform(handle);
 	curl_easy_cleanup(handle);
 	fclose(fp);
+      system("tar -xf foo.tar");
+      chdir("foo");
+      system("./make.sh");
+      chdir("..");
+      system("rm -r foo foo.tar");
 	}
-    } else if (strcmp(argv[1], "-u") == 0) {
-        printf("not done yet\n");
-        printf("%s\n", argv[2]);
-    } else if (strcmp(argv[1], "-r") == 0) {
+    }  else if (strcmp(argv[1], "-r") == 0) {
         printf("not done yet\n");
         printf("%s\n", argv[2]);
     } else {
-        printf("SYNTAX: rcpm (-i, -u, -h, -v, -r) <PACKAGE>\n -i (or --install): Installs a package\n -u(or --upgrade): Upgrades a package\n -r(or --remove): Removes a Package\n -h(or --help): Displays this menu\n -v(or --version): Displays the version of the program (not the package)\n if you encounter any bugs please report it on Github.\n");
+        printf("SYNTAX: rcpm (-i, -h, -v, -r) <PACKAGE>\n -i (or --install): Installs a package\n -r(or --remove): Removes a Package\n -h(or --help): Displays this menu\n -v(or --version): Displays the version of the program (not the package)\n if you encounter any bugs please report it on Github.\n");
     }
 }
