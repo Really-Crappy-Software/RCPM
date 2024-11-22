@@ -17,7 +17,6 @@ int main ( int argc, char* argv[] ) {
 	CURL *handle;
 	handle = curl_easy_init();
     FILE *fp;
-    char blorbless[100] = ".tar";
     char blorb[100] = "http://127.0.0.1/";
     CURLcode res;
     char $PACKAGE[100];
@@ -29,7 +28,7 @@ int main ( int argc, char* argv[] ) {
         printf("Installing %s\n", argv[2]);
 	if (handle) {
 	fp = fopen("foo.tar", "w");
-	strcat(argv[2], blorbless);
+	strcat(argv[2], ".tar");
 	strcat(blorb, argv[2]);
         curl_easy_setopt(handle, CURLOPT_URL, blorb);
 	curl_easy_setopt(handle, CURLOPT_WRITEFUNCTION, write_data);
