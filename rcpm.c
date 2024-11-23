@@ -17,6 +17,7 @@ int main ( int argc, char* argv[] ) {
 	CURL *handle;
 	handle = curl_easy_init();
     FILE *fp;
+    char locateballs[100] = "/etc/rcpm/";
     char blorb[100] = "http://127.0.0.1/";
     CURLcode res;
     char $PACKAGE[100];
@@ -43,8 +44,8 @@ int main ( int argc, char* argv[] ) {
       system("rm -r foo foo.tar");
 	}
     }  else if (strcmp(argv[1], "-r") == 0) {
-        printf("not done yet\n");
-        printf("%s\n", argv[2]);
+        strcat(locateballs, argv[2]);
+	system(locateballs);
     } else {
         printf("SYNTAX: rcpm (-i, -h, -v, -r) <PACKAGE>\n -i (or --install): Installs a package\n -r(or --remove): Removes a Package\n -h(or --help): Displays this menu\n -v(or --version): Displays the version of the program (not the package)\n if you encounter any bugs please report it on Github.\n");
     }
